@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import 'reset-css'
+import './fonts/fonts.css'
 import 'flexboxgrid/dist/flexboxgrid.css'
 
 import Header from './components/header/Header'
