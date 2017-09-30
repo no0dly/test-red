@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CompanyFilter = (props) => {
+  const onChangeHandler = (name, e) => {
+    props.onChange(name)
+  }
   return (
     <Wrap>
       <Container>
@@ -18,22 +21,44 @@ const CompanyFilter = (props) => {
           </FiltersTitle>
           <FiltersList>
             <FiltersItem>
-              <input className="filter__checkbox" id="filter__service" type="checkbox" checked={ props.filters.service } />
+              <input
+                onChange={ onChangeHandler.bind(this, 'service') }
+                checked={ props.filters.service }
+                className="filter__checkbox" id="filter__service"
+                type="checkbox"
+              />
               <label htmlFor="filter__service">Service</label>
             </FiltersItem>
             <FiltersItem>
-              <input className="filter__checkbox" id="filter__instalation" type="checkbox" checked={ props.filters.installation } />
+              <input
+                onChange={ onChangeHandler.bind(this, 'installation') }
+                checked={ props.filters.installation } className="filter__checkbox" id="filter__instalation"
+                type="checkbox"
+              />
               <label htmlFor="filter__instalation">Installation</label>
             </FiltersItem>
             <FiltersItem>
-              <input className="filter__checkbox" id="filter__residential" type="checkbox" checked={ props.filters.residential } />
+              <input
+                onChange={ onChangeHandler.bind(this, 'residential') }
+                checked={ props.filters.residential } className="filter__checkbox" id="filter__residential"
+                type="checkbox"
+              />
               <label htmlFor="filter__residential">Residential</label>
             </FiltersItem>
             <FiltersItem>
-              <input className="filter__checkbox" id="filter__commercial" type="checkbox" checked={ props.filters.commercial } />
+              <input
+                onChange={ onChangeHandler.bind(this, 'commercial') }
+                checked={ props.filters.commercial }
+                className="filter__checkbox" id="filter__commercial" type="checkbox"
+              />
               <label htmlFor="filter__commercial">Commercial</label>
             </FiltersItem>
           </FiltersList>
+          <FiltersTooltip>
+            <FiltersTooltipLink href="#">
+              ?
+            </FiltersTooltipLink>
+          </FiltersTooltip>
         </Filters>
       </Container>
     </Wrap>
@@ -43,6 +68,7 @@ const CompanyFilter = (props) => {
 const Wrap = styled.div`
   background: #fff;
   padding: 0 20px;
+  margin-bottom: 30px;
 `
 
 const Container = styled.div`
@@ -90,6 +116,9 @@ const FiltersList = styled.ul`
 
 const FiltersItem = styled.li`
   margin-right: 40px;
+  &:last-child {
+    margin-right: 10px;
+  }
   label {
     display: flex;
     align-items: center;
@@ -130,6 +159,25 @@ const FiltersItem = styled.li`
     box-shadow: inset 0 0 0 8px #216ddf;
   }
 }
+`
+
+const FiltersTooltip = styled.div`
+  width: 19px;
+  height: 19px;
+  border-radius: 2px;
+  background-color: #d8d8d8;
+`
+
+const FiltersTooltipLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #216ddf;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  font-size: 0.75rem;
+  font-family: 'opensans_regular';
 `
 
 export default CompanyFilter
