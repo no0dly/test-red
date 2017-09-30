@@ -40,6 +40,4 @@ const LogoWrap = styled.div`
   }
 `
 
-
-
 export default HeaderBot
