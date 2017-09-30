@@ -10,7 +10,7 @@ const CompanyFilter = (props) => {
       <Container>
         <Results>
           <ResultsText>
-            { props.result } dealers in 28226
+            { props.result } dealers in { props.totalAmount }
           </ResultsText>
         </Results>
         <Filters>

@@ -19,12 +19,16 @@ export class Content extends Component {
         installation: false,
         residential: false,
         commercial: false
-      }
+      },
+      totalAmount: 0,
+      isShown: 0
     }
   }
   componentDidMount() {
     this.setState({
-      list: jsonData.dealers
+      list: jsonData.dealers,
+      totalAmount: jsonData.dealers.length,
+      isShown: jsonData.dealers.length
     })
   }
   onChange(name) {
@@ -61,19 +65,21 @@ export class Content extends Component {
     if (!allUnchecked) {
       filteredData = [ ...new Set(filteredData) ]
       this.setState({
-        list: filteredData
+        list: filteredData,
+        isShown: filteredData.length
       })
     } else {
       this.setState({
-        list: jsonData.dealers
+        list: jsonData.dealers,
+        isShown: jsonData.dealers.length
       })
     }
   }
   render() {
-    const { filters, list } = this.state
+    const { filters, list, totalAmount, isShown } = this.state
     return (
       <Wrap>
-        <CompanyFilter filters={ filters } result="25" onChange={ this.onChange.bind(this) } />
+        <CompanyFilter filters={ filters } result={ isShown } totalAmount={ totalAmount } onChange={ this.onChange.bind(this) } />
         <CompanyList data={ list } />
       </Wrap>
     )

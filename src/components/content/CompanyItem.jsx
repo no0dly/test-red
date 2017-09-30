@@ -13,7 +13,15 @@ import usersIco from '../../images/icons/people-ico.png'
 const CompanyItem = (props) => {
   const renderCertif = () => {
     return props.certifications.map((certification, idx) => {
-      return <CertifItem key={ idx }> { certification } </CertifItem>
+      if (certification === 'Commercial Pro') {
+        return <CertifItem className="order_4" key={ idx }> { certification } </CertifItem>
+      } else if (certification === 'Residential Pro') {
+        return <CertifItem className="order_3" key={ idx }> { certification } </CertifItem>
+      } else if (certification === 'Service Pro') {
+        return <CertifItem className="order_2" key={ idx }> { certification } </CertifItem>
+      } else {
+        return <CertifItem key={ idx }> { certification } </CertifItem>
+      }
     })
   }
   return (
@@ -215,6 +223,7 @@ const CertifItem = styled.li`
   font-size: 0.75rem;
   font-family: 'opensans_regular';
   box-sizing: border-box;
+  order: 1;
   &:before {
     content: '';
     background-position: center;
@@ -248,7 +257,7 @@ const CertifItem = styled.li`
       background-image: url(${homeIco});
     }
   }
-  &:last-child {
+  &:nth-child(4) {
     text-align: left;
     padding-left: 20px;
     &:before {
@@ -256,6 +265,15 @@ const CertifItem = styled.li`
       height: 11px;
       background-image: url(${usersIco});
     }
+  }
+  &.order_2 {
+    order: 2;
+  }
+  &.order_3 {
+    order: 3;
+  }
+  &.order_4 {
+    order: 4;
   }
 `
 
