@@ -28,47 +28,46 @@ export class Content extends Component {
     })
   }
   onChange(name) {
+    let updatedFilters = { ...this.state.filters }
     if (name === 'service') {
-      this.setState({
-        filters: {
-          service: !this.state.filters.service
-        }
-      }, this.updateData)
+      updatedFilters.service = !this.state.filters.service
     } else if (name === 'installation') {
-      this.setState({
-        filters: {
-          installation: !this.state.filters.installation
-        }
-      }, this.updateData)
+      updatedFilters.installation = !this.state.filters.installation
     } else if (name === 'residential') {
-      this.setState({
-        filters: {
-          residential: !this.state.filters.residential
-        }
-      }, this.updateData)
+      updatedFilters.residential = !this.state.filters.residential
     } else if (name === 'commercial') {
-      this.setState({
-        filters: {
-          commercial: !this.state.filters.commercial
-        }
-      }, this.updateData)
+      updatedFilters.commercial = !this.state.filters.commercial
     }
+    this.setState({
+      filters: updatedFilters
+    }, this.updateData)
   }
   updateData() {
     const data = jsonData.dealers
     // const { service, installation, residential, commercial } = this.state.filters
     let filteredData = []
+    let allUnchecked = true
     data.map((item, idx) => {
       Object.keys(this.state.filters).map((value) => {
         let formatedArr = data[idx].data.certifications.join(' ').toLowerCase().split(' ')
-        if (formatedArr.indexOf(value) !== -1) {
-          filteredData.push(data[idx])
+        if (this.state.filters[value]) {
+          if (formatedArr.indexOf(value) !== -1) {
+            filteredData.push(data[idx])
+            allUnchecked = false
+          }
         }
       })
     })
-    this.setState({
-      list: filteredData
-    })
+    if (!allUnchecked) {
+      filteredData = [ ...new Set(filteredData) ]
+      this.setState({
+        list: filteredData
+      })
+    } else {
+      this.setState({
+        list: jsonData.dealers
+      })
+    }
   }
   render() {
     const { filters, list } = this.state
