@@ -21,6 +21,8 @@ const HeaderBot = (props) => {
 const Wrap = styled.div`
   background: #fff;
   padding: 34px 20px 25px;
+	box-shadow: 0 2px 4px 1px rgba(0,0,0,.31);
+  margin-bottom: 4px;
 `
 
 const Container = styled.div`
