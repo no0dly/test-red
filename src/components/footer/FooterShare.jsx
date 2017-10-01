@@ -11,7 +11,7 @@ const FooterShare = (props) => {
     <Wrap>
       <Container>
         <LogoWrap>
-          <img src={ footerLogo } />
+          <img src={ footerLogo } alt="footer logo" />
         </LogoWrap>
         <Share>
           <ShareSlogan>
@@ -22,17 +22,17 @@ const FooterShare = (props) => {
           <ShareList>
             <ShareItem>
               <ShareLink className="twitter" href="#">
-                <img src={ twitterIco } />
+                <img src={ twitterIco } alt="twitter" />
               </ShareLink>
             </ShareItem>
             <ShareItem>
               <ShareLink className="facebook" href="#">
-                <img src={ facebookIco } />
+                <img src={ facebookIco } alt="facebook" />
               </ShareLink>
             </ShareItem>
             <ShareItem>
               <ShareLink className="youtube" href="#">
-                <img src={ youtubeIco } />
+                <img src={ youtubeIco } alt="youtube" />
               </ShareLink>
             </ShareItem>
           </ShareList>

@@ -63,7 +63,9 @@ export class Content extends Component {
             allUnchecked = false
           }
         }
+        return value
       })
+      return item
     })
     if (!allUnchecked) {
       filteredData = [ ...new Set(filteredData) ]

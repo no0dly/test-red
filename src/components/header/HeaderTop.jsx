@@ -17,7 +17,7 @@ const HeaderTop = (props) => {
             <Link href="#">
               Commercial Service
               <ImageWrap>
-                <img src={ action } />
+                <img src={ action } alt="action" />
               </ImageWrap>
             </Link>
           </Item>

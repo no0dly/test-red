@@ -10,7 +10,7 @@ const HeaderBot = (props) => {
     <Wrap>
       <Container>
         <LogoWrap>
-          <img src={ logo } />
+          <img src={ logo } alt="logo" />
         </LogoWrap>
         <Nav />
       </Container>
