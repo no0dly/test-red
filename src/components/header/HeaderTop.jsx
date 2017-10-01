@@ -40,6 +40,7 @@ const List = styled.ul`
   display: flex;
   justify-content: flex-end;
   padding: 17px 20px 16px;
+  flex-wrap: wrap;
 `
 
 const Item = styled.li`

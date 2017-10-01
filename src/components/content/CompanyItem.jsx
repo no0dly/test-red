@@ -86,6 +86,9 @@ const Wrap = styled.li`
   width: 33.3%;
   text-align: center;
   margin-bottom: 20px;
+  @media (max-width: 1020px) {
+    width: 50%;
+  }
 `
 
 const Container = styled.div`

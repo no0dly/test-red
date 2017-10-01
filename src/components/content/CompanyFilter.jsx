@@ -80,6 +80,7 @@ const Container = styled.div`
   align-items: center;
   background: #f6f6f6;
   border-radius: 10px;
+  flex-wrap: wrap;
 `
 
 const Results = styled.div`

@@ -61,11 +61,17 @@ const Nav = (props) => {
 const Wrap = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  @media (max-width: 1200px) {
+    justify-content: space-between;
+    width: 100%;
+  }
 `
 
 const List = styled.ul`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 const Item = styled.li`
