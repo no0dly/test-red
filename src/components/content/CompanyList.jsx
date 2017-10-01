@@ -5,9 +5,12 @@ import CompanyItem from './CompanyItem'
 
 const CompanyList = (props) => {
   const { data } = props
+  const onClickHandler = (name) => {
+    props.onClick(name)
+  }
   const renderList = () => {
     return data.map((item) => {
-      return <CompanyItem { ...item.data } key={ item.data.companyID } />
+      return <CompanyItem { ...item.data } onClick={ onClickHandler } key={ item.data.companyID } />
     })
   }
   return (

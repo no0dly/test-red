@@ -24,6 +24,11 @@ const CompanyItem = (props) => {
       }
     })
   }
+
+  const onClickHolder = (name, e) => {
+    props.onClick(name)
+  }
+
   return (
     <Wrap>
       <Container>
@@ -44,7 +49,7 @@ const CompanyItem = (props) => {
             </SmallText>
           </Small>
           <Contact>
-            <ContactButton>
+            <ContactButton onClick={ onClickHolder.bind(this, props.name) }>
               Contact this Pro
             </ContactButton>
           </Contact>

@@ -6,6 +6,7 @@ import waterBg from '../../images/water-image.png'
 
 import CompanyList from './CompanyList'
 import CompanyFilter from './CompanyFilter'
+import EmailPopup from './EmailPopup'
 
 const jsonData = require('../../dealers.json')
 
@@ -21,7 +22,9 @@ export class Content extends Component {
         commercial: false
       },
       totalAmount: 0,
-      isShown: 0
+      isShown: 0,
+      showPopup: false,
+      selectedCompany: ''
     }
   }
   componentDidMount() {
@@ -75,12 +78,37 @@ export class Content extends Component {
       })
     }
   }
+
+  togglePopup(name) {
+    const { showPopup } = this.state
+    if (!showPopup && name) {
+      document.body.style.overflow = 'hidden'
+      this.setState({
+        showPopup: !showPopup,
+        selectedCompany: name
+      })
+    } else {
+      document.body.style.overflow = 'auto'
+      this.setState({
+        showPopup: !showPopup,
+        selectedCompany: ''
+      })
+    }
+  }
+
   render() {
-    const { filters, list, totalAmount, isShown } = this.state
+    const { filters, list, totalAmount, isShown, showPopup, selectedCompany } = this.state
+    const renderPopup = () => {
+      if (showPopup) {
+        return <EmailPopup onClick={ this.togglePopup.bind(this) } name={ selectedCompany } />
+      }
+    }
     return (
       <Wrap>
         <CompanyFilter filters={ filters } result={ isShown } totalAmount={ totalAmount } onChange={ this.onChange.bind(this) } />
-        <CompanyList data={ list } />
+        <CompanyList data={ list } onClick={ this.togglePopup.bind(this) } />
+        { renderPopup() }
+
       </Wrap>
     )
   }
