@@ -214,7 +214,7 @@ const HoursItem = styled.li`
 
 const Certif = styled.div`
   background: #f6f6f6;
-  padding: 25px 10px;
+  padding: 25px 10px 25px 50px;
 `
 
 const CertifList = styled.ul`
@@ -244,30 +244,22 @@ const CertifItem = styled.li`
     height: 13px;
   }
   &:first-child {
-    text-align: right;
-    padding-right: 20px;
     &:before {
       background-image: url(${starIco});
     }
   }
   &:nth-child(2) {
-    text-align: left;
-    padding-left: 20px;
     &:before {
       background-image: url(${spareIco});
     }
   }
   &:nth-child(3) {
-    text-align: right;
-    padding-right: 20px;
     &:before {
       height: 12px;
       background-image: url(${homeIco});
     }
   }
   &:nth-child(4) {
-    text-align: left;
-    padding-left: 20px;
     &:before {
       width: 12px;
       height: 11px;
