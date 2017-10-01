@@ -1,103 +1,135 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import closeIco from '../../images/icons/close.svg'
 import arrowIco from '../../images/icons/arrow.svg'
+import validatedIco from '../../images/icons/validated.svg'
 
-const EmailPopup = (props) => {
-  const closePopup = () => {
-    props.onClick()
+export class EmailPopup extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      nameValid: false,
+      phoneValid: false,
+      emailValid: false
+    }
   }
-  return (
-    <Wrap>
-      <Container>
-        <PopupWrap>
-          <Title>
-            <TitleName>
-              email
-            </TitleName>
-            <TitleText>
-              { props.name }
-            </TitleText>
-            <CloseButton onClick={ closePopup.bind(this) } />
-          </Title>
-          <Subtitle>
-            <SubtitleText>
-              Fill out the form below and Premium Pools & Spas of Charlotte will get in touch.
-            </SubtitleText>
-          </Subtitle>
-          <Form>
-            <Header>
-              <InputWrap>
-                <Label>
-                  <LabelText>
-                    First and last name
-                  </LabelText>
-                  <Validator />
-                </Label>
-                <Input type="text" name="name" />
-              </InputWrap>
-              <InputWrap className="half-size">
-                <Label>
-                  <LabelText>
-                    Phone number
-                  </LabelText>
-                  <Validator />
-                </Label>
-                <Input type="phone" name="phone" />
-              </InputWrap>
-              <InputWrap>
-                <Label>
-                  <LabelText>
-                    Email address
-                  </LabelText>
-                  <Validator />
-                </Label>
-                <Input type="email" name="email" />
-              </InputWrap>
-              <InputWrap>
-                <Label>
-                  <LabelText>
-                    Comments or questions
-                  </LabelText>
-                  <Message>
-                    Optional
-                  </Message>
-                </Label>
-                <Textarea name="Comments" />
-              </InputWrap>
-              <InputWrap>
-                <Label className="margin">
-                  <LabelText>
-                    Do you currently own a pool or spa?
-                  </LabelText>
-                  <Message>
-                    Optional
-                  </Message>
-                </Label>
-                <InputChoice type="radio" name="choice" id="yes" defaultChecked />
-                <LabelChoice htmlFor="yes">Yes</LabelChoice>
-                <InputChoice type="radio" name="choice" id="no" />
-                <LabelChoice htmlFor="no">No</LabelChoice>
-              </InputWrap>
-            </Header>
-            <Footer>
-              <SubmitWrap>
-                <SubmitButton type="submit">
-                  Send my email
-                </SubmitButton>
-              </SubmitWrap>
-            </Footer>
-          </Form>
-          <Phrase>
-            <PhraseText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
-            </PhraseText>
-          </Phrase>
-        </PopupWrap>
-      </Container>
-    </Wrap>
-  )
+  render() {
+    const closePopup = () => {
+      this.props.onClick()
+    }
+
+    const renderValidator = (name) => {
+      if (this.state[name]) {
+        return <Validator className="valid" />
+      } else {
+        return <Validator />
+      }
+    }
+
+    const checkValidation = (name, e) => {
+      if (e.target.value.length > 0) {
+        this.setState({
+          [name]: true
+        })
+      } else {
+        this.setState({
+          [name]: false
+        })
+      }
+    }
+
+    return (
+      <Wrap>
+        <Container>
+          <PopupWrap>
+            <Title>
+              <TitleName>
+                email
+              </TitleName>
+              <TitleText>
+                { this.props.name }
+              </TitleText>
+              <CloseButton onClick={ closePopup.bind(this) } />
+            </Title>
+            <Subtitle>
+              <SubtitleText>
+                Fill out the form below and Premium Pools & Spas of Charlotte will get in touch.
+              </SubtitleText>
+            </Subtitle>
+            <Form>
+              <Header>
+                <InputWrap>
+                  <Label>
+                    <LabelText>
+                      First and last name
+                    </LabelText>
+                    { renderValidator('nameValid') }
+                  </Label>
+                  <Input type="text" name="name" onChange={ checkValidation.bind(this, 'nameValid') } />
+                </InputWrap>
+                <InputWrap className="half-size">
+                  <Label>
+                    <LabelText>
+                      Phone number
+                    </LabelText>
+                    { renderValidator('phoneValid') }
+                  </Label>
+                  <Input type="phone" name="phone" onChange={ checkValidation.bind(this, 'phoneValid') } />
+                </InputWrap>
+                <InputWrap>
+                  <Label>
+                    <LabelText>
+                      Email address
+                    </LabelText>
+                    { renderValidator('emailValid') }
+                  </Label>
+                  <Input type="email" name="email" onChange={ checkValidation.bind(this, 'emailValid') } />
+                </InputWrap>
+                <InputWrap>
+                  <Label>
+                    <LabelText>
+                      Comments or questions
+                    </LabelText>
+                    <Message>
+                      Optional
+                    </Message>
+                  </Label>
+                  <Textarea name="Comments" />
+                </InputWrap>
+                <InputWrap>
+                  <Label className="margin">
+                    <LabelText>
+                      Do you currently own a pool or spa?
+                    </LabelText>
+                    <Message>
+                      Optional
+                    </Message>
+                  </Label>
+                  <InputChoice type="radio" name="choice" id="yes" defaultChecked />
+                  <LabelChoice htmlFor="yes">Yes</LabelChoice>
+                  <InputChoice type="radio" name="choice" id="no" />
+                  <LabelChoice htmlFor="no">No</LabelChoice>
+                </InputWrap>
+              </Header>
+              <Footer>
+                <SubmitWrap>
+                  <SubmitButton type="submit">
+                    Send my email
+                  </SubmitButton>
+                </SubmitWrap>
+              </Footer>
+            </Form>
+            <Phrase>
+              <PhraseText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.
+              </PhraseText>
+            </Phrase>
+          </PopupWrap>
+        </Container>
+      </Wrap>
+    )
+  }
 }
 
 const Wrap = styled.div`
@@ -217,6 +249,12 @@ const Validator = styled.div`
   margin-bottom: 5px;
   position: relative;
   top: -2px;
+  &.valid {
+    background-image: url(${validatedIco});
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+  }
 `
 
 const Input = styled.input`

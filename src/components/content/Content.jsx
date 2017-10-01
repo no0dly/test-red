@@ -51,7 +51,7 @@ export class Content extends Component {
   }
   updateData() {
     const data = jsonData.dealers
-    // const { service, installation, residential, commercial } = this.state.filters
+
     let filteredData = []
     let allUnchecked = true
     data.map((item, idx) => {
